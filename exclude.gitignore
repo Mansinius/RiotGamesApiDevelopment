@@ -1,0 +1,11 @@
+# Debug Folders Folders
+#bin-debug/
+#bin-release/
+#[Oo]bj/
+#[Bb]in/
+[Dd]ebug/
+
+# Other files and folders
+
+# Visual-Studio Cache-Files
+*.cache
