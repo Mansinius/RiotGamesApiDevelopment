@@ -1,2 +1,7 @@
 # RiotGamesApiDevelopment
-Building a framework from the RiotGamesAPI as a foundation for planned Desktop Application to read and review statistics about the game.
+
+# ApiFramework:
+A framework using the RiotGamesAPI.
+
+# Program:
+A Desktop Application using ApiFramework to read, review and visualize statistics about players in League of Legends.
