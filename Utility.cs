@@ -119,6 +119,23 @@ namespace RiotGamesApi
             }
             return new ChampionDto();
         }
+
+        public static SummonerSpellDto ReadSummonerSpellFromStaticFile(string name)
+        {
+            if (StaticFileExists(StaticData.SummonerSpells))
+            {
+                SummonerSpellListDto spells = ReadFromStaticFile<SummonerSpellListDto>(StaticData.SummonerSpells);
+
+                foreach (SummonerSpellDto spell in spells.data.Values)
+                {
+                    if (spell.name == name)
+                    {
+                        return spell;
+                    }
+                }
+            }
+            return new SummonerSpellDto();
+        }
     }
 
     public class WebUtility
