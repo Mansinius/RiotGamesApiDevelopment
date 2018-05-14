@@ -1,0 +1,9 @@
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\bin\Debug\RiotGamesApi.dll
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\bin\Debug\RiotGamesApi.pdb
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\obj\Debug\RiotGamesApi.csprojAssemblyReference.cache
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\obj\Debug\RiotGamesApi.csproj.CoreCompileInputs.cache
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\obj\Debug\RiotGamesApi.dll
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\obj\Debug\RiotGamesApi.pdb
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Leo Woellmer\source\repos\BuildRiotClassesFromAPI\RiotGamesApi\obj\Debug\RiotGamesApi.csproj.CopyComplete
