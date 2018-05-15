@@ -921,16 +921,15 @@ namespace RiotGamesApi
     /// </summary>
     public class ApiLink
     {
-        // API KEY
-        #region
+
+        #region API_KEY
 
         public const string ApiPrefix = "api_key=";
         public const string ApiKey = "RGAPI-b36c0935-6203-4b83-853b-ec0c1420f14b";
 
         #endregion
-
-        // SERVICE PROXIES
-        #region
+        
+        #region SERVICE_HOSTS
 
         public const string Endpoint_BR = @"https://br1.api.riotgames.com";
         public const string Endpoint_EUNE = @"https://eun1.api.riotgames.com";
@@ -959,9 +958,8 @@ namespace RiotGamesApi
         public const string Endpoint_Spectator_PBE = @"https://spectator.pbe1.lol.riotgames.com";
 
         #endregion
-
-        // CHAMPION MASTERY
-        #region
+        
+        #region CHAMPION_MASTERY
 
         /// <summary>
         /// <see cref="ChampionMastery_BySummoner"/> + {summonerId}
@@ -980,9 +978,8 @@ namespace RiotGamesApi
         public const string ChampionMastery_Scores_BySummoner = @"/lol/champion-mastery/v3/scores/by-summoner/";
 
         #endregion
-
-        // CHAMPION
-        #region
+        
+        #region CHAMPION
 
         public const string Champions_List = @"/lol/platform/v3/champions";
 
@@ -992,9 +989,8 @@ namespace RiotGamesApi
         public const string Champions_ById = @"/lol/platform/v3/champions/";
 
         #endregion
-
-        // LEAGUE
-        #region
+        
+        #region LEAGUE
 
         /// <summary>
         /// <see cref="League_Challenger_ByQueue"/> + {queue}
@@ -1017,9 +1013,8 @@ namespace RiotGamesApi
         public const string League_BySummoner = @"/lol/league/v3/positions/by-summoner/";
 
         #endregion
-
-        // STATIC DATA
-        #region
+        
+        #region STATIC_DATA
 
         public const string StaticData_Champions = @"/lol/static-data/v3/champions";
 
@@ -1085,16 +1080,14 @@ namespace RiotGamesApi
         public const string StaticData_Versions = @"/lol/static-data/v3/versions";
 
         #endregion
-
-        // STATUS
-        #region
+        
+        #region STATUS
 
         public const string Status_ShardData = @"/lol/status/v3/shard-data";
 
         #endregion
-
-        // MATCH
-        #region
+        
+        #region MATCH
 
         /// <summary>
         /// <see cref="Match_ByTournamentCode_1"/> + {tournamentCode} + <see cref="Match_ByTournamentCode_2"/> 
@@ -1124,9 +1117,8 @@ namespace RiotGamesApi
         public const string Match_Timeline_ById = @"/lol/match/v3/timelines/by-match/";
 
         #endregion
-
-        // SPECTATOR
-        #region
+        
+        #region SPECTATOR
 
         /// <summary>
         /// <see cref="Spectator_ActiveGames_ById"/> + {summonerId}
@@ -1136,9 +1128,8 @@ namespace RiotGamesApi
         public const string Spectator_FeaturedGames = @"/lol/spectator/v3/featured-games";
 
         #endregion
-
-        // SUMMONER
-        #region
+        
+        #region SUMMONER
 
         /// <summary>
         /// <see cref="Summoner_ByAccountId"/> + {accountId}
@@ -1156,9 +1147,8 @@ namespace RiotGamesApi
         public const string Summoner_ById = @"/lol/summoner/v3/summoners/";
 
         #endregion
-
-        // THIRD PARTY CODE
-        #region
+        
+        #region THIRD_PARTY_CODE
 
         /// <summary>
         /// <see cref="ThirdPartyCode_BySummonerId"/> + {summonerId}
@@ -1166,9 +1156,8 @@ namespace RiotGamesApi
         public const string ThirdPartyCode_BySummonerId = @"/lol/platform/v3/third-party-code/by-summoner/";
 
         #endregion
-
-        // TOURNAMENT STUB
-        #region
+        
+        #region TOURNAMENT_STUB
 
         public const string TournamentStub_Codes = @"/lol/tournament-stub/v3/codes";
 
@@ -1182,9 +1171,8 @@ namespace RiotGamesApi
         public const string TournamentStub_Tournaments = @"/lol/tournament-stub/v3/tournaments";
 
         #endregion
-
-        // TOURNAMENT
-        #region
+        
+        #region TOURNAMENT
 
         public const string Tournament_Codes = @"/lol/tournament/v3/codes";
 
