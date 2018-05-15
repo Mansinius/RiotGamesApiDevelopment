@@ -17,8 +17,10 @@ namespace RiotGamesApi
     public class ConfigUtility
     {
 
-        // CONFIG UTILITY
-        #region
+        /*
+         * Utility to create and read a config.json-file using class Config.
+         */
+        #region CONFIG_UTILITY
 
         private const string pathConfig = @".\config.json";
 
@@ -136,6 +138,57 @@ namespace RiotGamesApi
             }
             return new SummonerSpellDto();
         }
+
+        public static ItemDto ReadItemFromStaticFile(string name)
+        {
+            if (StaticFileExists(StaticData.Items))
+            {
+                ItemListDto items = ReadFromStaticFile<ItemListDto>(StaticData.Items);
+
+                foreach (ItemDto item in items.data.Values)
+                {
+                    if (item.name == name)
+                    {
+                        return item;
+                    }
+                }
+            }
+            return new ItemDto();
+        }
+
+        public static ReforgedRunePathDto ReadRunePathFromStaticFile(int id)
+        {
+            if (StaticFileExists(StaticData.ReforgedRunePaths))
+            {
+                List<ReforgedRunePathDto> runePaths = ReadFromStaticFile<List<ReforgedRunePathDto>>(StaticData.ReforgedRunePaths);
+
+                foreach (ReforgedRunePathDto runePath in runePaths)
+                {
+                    if (runePath.id == id)
+                    {
+                        return runePath;
+                    }
+                }
+            }
+            return new ReforgedRunePathDto();
+        }
+
+        public static ReforgedRuneDto ReadRuneFromStaticFile(int id)
+        {
+            if (StaticFileExists(StaticData.ReforgedRunes))
+            {
+                List<ReforgedRuneDto> runes = ReadFromStaticFile<List<ReforgedRuneDto>>(StaticData.ReforgedRunes);
+
+                foreach (ReforgedRuneDto rune in runes)
+                {
+                    if (rune.id == id)
+                    {
+                        return rune;
+                    }
+                }
+            }
+            return new ReforgedRuneDto();
+        }
     }
 
     public class WebUtility
@@ -184,8 +237,10 @@ namespace RiotGamesApi
 
     public class BuildUtility
     {
-        // RESOLVE API LINKS
-        #region
+        /*
+         * Utility to create the full API-Link from enums
+         */
+        #region RESOLVE_API_LINKS
 
         public static string ResolveApi(ApiHost host, ApiCall api, string[] headerParameters, params string[] apiParameters)
         {
@@ -390,8 +445,10 @@ namespace RiotGamesApi
 
         #endregion
 
-        // SPECTATOR PROCESS
-        #region
+        /*
+         *  Utility to create a Process which will start the League Client to spectate the given game.
+         */
+        #region SPECATOR_PROCESS
 
         public static System.Diagnostics.Process GetSpectatorProcess(string leagueClientExe, SpectatorHost host, string encryptionKey, long matchId, string platformId)
         {
