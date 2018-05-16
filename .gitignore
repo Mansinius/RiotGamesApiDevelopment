@@ -148,6 +148,7 @@ publish/
 # The packages folder can be ignored because of Package Restore
 **/packages/*
 **/packages_old/*
+packages/*
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
 !**/packages/Extended.Wpf.Toolkit.3.2.0/lib/net40/Xceed.Wpf.AvalonDock.dll
