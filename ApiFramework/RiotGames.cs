@@ -925,7 +925,7 @@ namespace RiotGamesApi
         #region API_KEY
 
         public const string ApiPrefix = "api_key=";
-        public const string ApiKey = "RGAPI-b36c0935-6203-4b83-853b-ec0c1420f14b";
+        public const string ApiKey = "RGAPI-0cd16ad3-0407-412d-a9d8-dcd576ef6542";
 
         #endregion
         
