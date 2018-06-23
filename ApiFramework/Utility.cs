@@ -6,22 +6,32 @@ using System.Text;
 
 namespace RiotGamesApi
 {
+    /// <summary>
+    /// Class to save configurations to use with the API.
+    /// </summary>
     public class Config
     {
+        /// <summary>
+        /// The default SummonerName.
+        /// </summary>
         public string SummonerName { get; set; }
+
+        /// <summary>
+        /// The default ApiEndpoint/ApiHost.
+        /// </summary>
         public int ApiEndpoint { get; set; }
-        //Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
+
+        /// <summary>
+        /// The League path of LeagueClient.exe
+        /// </summary>
         public string LoLClientPath { get; set; }
     }
 
+    /// <summary>
+    /// Utility to create and read a config.json-file using class Config.
+    /// </summary>
     public class ConfigUtility
     {
-
-        /*
-         * Utility to create and read a config.json-file using class Config.
-         */
-        #region CONFIG_UTILITY
-
         private const string pathConfig = @".\config.json";
 
         public static bool ConfigExists()
@@ -31,7 +41,7 @@ namespace RiotGamesApi
 
         public static Config ReadConfig()
         {
-            string json = "";
+            string json = String.Empty;
             if (ConfigExists())
             {
                 json = File.ReadAllText(pathConfig);
@@ -51,14 +61,16 @@ namespace RiotGamesApi
                 LoLClientPath = lolClientPath
             };
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(config, Newtonsoft.Json.Formatting.Indented);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(config,
+                Newtonsoft.Json.Formatting.Indented);
             File.AppendAllText(pathConfig, json);
         }
 
-        #endregion
-
     }
 
+    /// <summary>
+    /// Utility to build static data files and read from them.
+    /// </summary>
     public class StaticDataUtility
     {
         public enum StaticData
@@ -87,10 +99,47 @@ namespace RiotGamesApi
 
         public static void BuildStaticFile(StaticData data, string json)
         {
+            Directory.CreateDirectory(@".\StaticData\");
+
             string path = @".\StaticData\" + data.ToString() + ".json";
             File.Delete(path);
 
             File.AppendAllText(path, json);
+        }
+
+        public static void BuildStaticFileChampion()
+        {
+            StaticDataUtility.BuildStaticFile(StaticDataUtility.StaticData.Champions,
+                WebUtility.GetFromSite(BuildUtility.ResolveApi(
+                    ApiHost.EUW, ApiCall.StaticData_Champions, new string[0])));
+        }
+
+        public static void BuildStaticFileItem()
+        {
+            StaticDataUtility.BuildStaticFile(StaticDataUtility.StaticData.Items,
+                WebUtility.GetFromSite(BuildUtility.ResolveApi(
+                    ApiHost.EUW, ApiCall.StaticData_Items, new string[0])));
+        }
+
+        public static void BuildStaticFileSummonerSpell()
+        {
+            StaticDataUtility.BuildStaticFile(StaticDataUtility.StaticData.SummonerSpells,
+                WebUtility.GetFromSite(BuildUtility.ResolveApi(
+                    ApiHost.EUW, ApiCall.StaticData_SummonerSpells, new string[0])));
+        }
+
+        public static void BuildStaticFileRune()
+        {
+            StaticDataUtility.BuildStaticFile(StaticDataUtility.StaticData.ReforgedRunes,
+                WebUtility.GetFromSite(BuildUtility.ResolveApi(
+                    ApiHost.EUW, ApiCall.StaticData_ReforgedRunes, new string[0])));
+        }
+
+        public static void BuildStaticFileRunePath()
+        {
+            StaticDataUtility.BuildStaticFile(StaticDataUtility.StaticData.ReforgedRunePaths,
+                WebUtility.GetFromSite(BuildUtility.ResolveApi(
+                    ApiHost.EUW, ApiCall.StaticData_ReforgedRunePaths, new string[0])));
         }
 
         public static T ReadFromStaticFile<T>(StaticData data)
@@ -109,11 +158,12 @@ namespace RiotGamesApi
         {
             if (StaticFileExists(StaticData.Champions))
             {
-                ChampionListDto champs = ReadFromStaticFile<ChampionListDto>(StaticData.Champions);
+                ChampionListDto champs =
+                    ReadFromStaticFile<ChampionListDto>(StaticData.Champions);
 
                 foreach (ChampionDto champ in champs.data.Values)
                 {
-                    if (champ.name == name)
+                    if (champ.name.ToUpper() == name.ToUpper())
                     {
                         return champ;
                     }
@@ -126,11 +176,12 @@ namespace RiotGamesApi
         {
             if (StaticFileExists(StaticData.SummonerSpells))
             {
-                SummonerSpellListDto spells = ReadFromStaticFile<SummonerSpellListDto>(StaticData.SummonerSpells);
+                SummonerSpellListDto spells =
+                    ReadFromStaticFile<SummonerSpellListDto>(StaticData.SummonerSpells);
 
                 foreach (SummonerSpellDto spell in spells.data.Values)
                 {
-                    if (spell.name == name)
+                    if (spell.name.ToUpper() == name.ToUpper())
                     {
                         return spell;
                     }
@@ -147,7 +198,7 @@ namespace RiotGamesApi
 
                 foreach (ItemDto item in items.data.Values)
                 {
-                    if (item.name == name)
+                    if (item.name.ToUpper() == name.ToUpper())
                     {
                         return item;
                     }
@@ -160,7 +211,8 @@ namespace RiotGamesApi
         {
             if (StaticFileExists(StaticData.ReforgedRunePaths))
             {
-                List<ReforgedRunePathDto> runePaths = ReadFromStaticFile<List<ReforgedRunePathDto>>(StaticData.ReforgedRunePaths);
+                List<ReforgedRunePathDto> runePaths =
+                    ReadFromStaticFile<List<ReforgedRunePathDto>>(StaticData.ReforgedRunePaths);
 
                 foreach (ReforgedRunePathDto runePath in runePaths)
                 {
@@ -177,7 +229,8 @@ namespace RiotGamesApi
         {
             if (StaticFileExists(StaticData.ReforgedRunes))
             {
-                List<ReforgedRuneDto> runes = ReadFromStaticFile<List<ReforgedRuneDto>>(StaticData.ReforgedRunes);
+                List<ReforgedRuneDto> runes = 
+                    ReadFromStaticFile<List<ReforgedRuneDto>>(StaticData.ReforgedRunes);
 
                 foreach (ReforgedRuneDto rune in runes)
                 {
@@ -191,6 +244,9 @@ namespace RiotGamesApi
         }
     }
 
+    /// <summary>
+    /// Utility for WebRequests to the API.
+    /// </summary>
     public class WebUtility
     {
         public static string GetFromSite(string url)
@@ -211,7 +267,8 @@ namespace RiotGamesApi
                 }
                 else
                 {
-                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+                    readStream = new StreamReader(receiveStream,
+                        Encoding.GetEncoding(response.CharacterSet));
                 }
 
                 data = readStream.ReadToEnd();
@@ -235,16 +292,21 @@ namespace RiotGamesApi
         }
     }
 
+    /// <summary>
+    /// Utility to build ApiStrings from parameters or SpectatorProcesses.
+    /// </summary>
     public class BuildUtility
     {
         /*
          * Utility to create the full API-Link from enums
          */
         #region RESOLVE_API_LINKS
-
-        public static string ResolveApi(ApiHost host, ApiCall api, string[] headerParameters, params string[] apiParameters)
+            
+        public static string ResolveApi(ApiHost host, ApiCall api, string[] headerParameters,
+            params string[] apiParameters)
         {
-            return ResolveApiEndpoint(host) + ResolveApiLink(api, apiParameters) + BuildParameters(headerParameters);
+            return ResolveApiEndpoint(host) + ResolveApiLink(api, apiParameters) +
+                BuildParameters(headerParameters);
         }
 
         private static string ResolveApiEndpoint(ApiHost endpoint)
@@ -322,7 +384,8 @@ namespace RiotGamesApi
                     case ApiCall.ChampionMastery_BySummoner:
                         return ApiLink.ChampionMastery_BySummoner + parameters[0];
                     case ApiCall.ChampionMastery_BySummoner_ByChampion:
-                        return ApiLink.ChampionMastery_BySummoner_ByChampion_1 + parameters[0] + ApiLink.ChampionMastery_BySummoner_ByChampion_2 + parameters[1];
+                        return ApiLink.ChampionMastery_BySummoner_ByChampion_1 + parameters[0] +
+                            ApiLink.ChampionMastery_BySummoner_ByChampion_2 + parameters[1];
                     case ApiCall.ChampionMastery_Scores_BySummoner:
                         return ApiLink.ChampionMastery_Scores_BySummoner + parameters[0];
                     case ApiCall.Champions_ById:
@@ -340,9 +403,11 @@ namespace RiotGamesApi
                     case ApiCall.Match_ById:
                         return ApiLink.Match_ById + parameters[0];
                     case ApiCall.Match_ById_ByTournamentCode:
-                        return ApiLink.Match_ById_ByTournamentCode_1 + parameters[0] + ApiLink.Match_ById_ByTournamentCode_2 + parameters[1];
+                        return ApiLink.Match_ById_ByTournamentCode_1 + parameters[0] +
+                            ApiLink.Match_ById_ByTournamentCode_2 + parameters[1];
                     case ApiCall.Match_ByTournamentCode:
-                        return ApiLink.Match_ByTournamentCode_1 + parameters[0] + ApiLink.Match_ByTournamentCode_1 + parameters[1];
+                        return ApiLink.Match_ByTournamentCode_1 + parameters[0] +
+                            ApiLink.Match_ByTournamentCode_1 + parameters[1];
                     case ApiCall.Match_List_ById:
                         return ApiLink.Match_List_ById + parameters[0];
                     case ApiCall.Match_Timeline_ById:
@@ -450,7 +515,8 @@ namespace RiotGamesApi
          */
         #region SPECATOR_PROCESS
 
-        public static System.Diagnostics.Process GetSpectatorProcess(string leagueClientExe, SpectatorHost host, string encryptionKey, long matchId, string platformId)
+        public static System.Diagnostics.Process GetSpectatorProcess(string leagueClientExe,
+            SpectatorHost host, string encryptionKey, long matchId, string platformId)
         {
             string arguments = "/C ";
 
@@ -488,7 +554,8 @@ namespace RiotGamesApi
             return highestVersion + "\\deploy\\";
         }
 
-        private static string GetSpectatorCommand(SpectatorHost host, string encryptionKey, long matchId, string platformId)
+        private static string GetSpectatorCommand(SpectatorHost host, string encryptionKey,
+            long matchId, string platformId)
         {
             const string fileName = "\"League of Legends.exe\"";
 
